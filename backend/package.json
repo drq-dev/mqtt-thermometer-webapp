@@ -8,7 +8,6 @@
     "compile": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "type": "module",
   "author": "Daniel Ricq",
   "license": "MIT",
   "devDependencies": {
