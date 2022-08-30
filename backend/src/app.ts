@@ -1,5 +1,11 @@
-// import { startService } from "./lib/TemperatureService";
+import { Sensor } from "./types/Sensor";
+import { startService } from "./lib/TemperatureService";
 
-// startService();
+const sensors: Sensor[] = [
+  { topic: "bedroom" },
+  { topic: "childs-room" },
+  { topic: "work-space" },
+  { topic: "living-room" },
+];
 
-console.log("Hello World");
+startService(sensors);
