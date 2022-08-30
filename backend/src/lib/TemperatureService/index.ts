@@ -1,3 +1,4 @@
+import { MqttClient } from "mqtt";
 import { Sensor } from "../../types/Sensor";
 
 const UPDATE_INTERVAL = 5_000;
@@ -11,10 +12,14 @@ const updateTemperature = (sensor: Sensor): void => {
     Math.round((newTemperature + Number.EPSILON) * 100) / 100;
 };
 
-const startService = (sensors: Sensor[]): void => {
+const startService = (sensors: Sensor[], client: MqttClient): void => {
   sensors.forEach((sensor) =>
     setInterval(() => {
       updateTemperature(sensor);
+      client.publish(
+        sensor.topic,
+        JSON.stringify({ temperature: sensor.temperature })
+      );
     }, UPDATE_INTERVAL)
   );
 };
