@@ -5,21 +5,12 @@ import { startService } from "./lib/TemperatureService";
 const client = mqtt.connect("mqtt://test.mosquitto.org");
 
 const sensors: Sensor[] = [
-  { topic: "bedroom", temperature: 24 },
+  { topic: "bedroom", temperature: 23 },
   { topic: "childs-room", temperature: 24 },
-  { topic: "work-space", temperature: 24 },
-  { topic: "living-room", temperature: 24 },
+  { topic: "workspace", temperature: 25 },
+  { topic: "living-room", temperature: 26 },
 ];
 
 client.on("connect", function () {
-  //   sensors.forEach((sensor) =>
-  //     client.subscribe(sensor.topic, (error) => {
-  //       if (error) console.error(error);
-  //     })
-  //   );
   startService(sensors, client);
 });
-
-// client.on("message", function (topic, message) {
-//   console.log(`${topic}: ${JSON.parse(message.toString()).temperature}°`);
-// });
